@@ -1,6 +1,6 @@
 import sqlite3 as sql
 
-data_stored = 'F:\Python\SQLite3\Practica-SQLite3\practica_2\db\streamers.db'
+data_stored = 'Tu path' # Agregar la ruta a donde se quiera crear la base de datos
 
 def create_db():
     conn = sql.connect(data_stored)
