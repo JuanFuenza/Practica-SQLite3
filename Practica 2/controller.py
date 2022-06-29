@@ -44,6 +44,42 @@ def insert_rows(streamer_list):
     conn.commit()
     conn.close()
 
+def read_ordered(field):
+    conn = sql.connect("streamers.db")
+    cursor = conn.cursor()
+    instruccion = f"SELECT * FROM streamers ORDER BY {field} DESC"
+    cursor.execute(instruccion)
+    datos = cursor.fetchall()
+    conn.commit()
+    conn.close()
+    print(datos)
+
+def search():
+    conn = sql.connect("streamers.db")
+    cursor = conn.cursor()
+    instruccion = f"SELECT * FROM streamers WHERE subs > 9800 ORDER BY subs DESC"
+    cursor.execute(instruccion)
+    datos = cursor.fetchall()
+    conn.commit()
+    conn.close()
+    print(datos)
+
+def update_fields():
+    conn = sql.connect("streamers.db")
+    cursor = conn.cursor()
+    instruccion = f"UPDATE streamers SET followers=1200000 WHERE name like 'alexelcapo'"
+    cursor.execute(instruccion)
+    conn.commit()
+    conn.close()
+
+def delete_row():
+    conn = sql.connect("streamers.db")
+    cursor = conn.cursor()
+    instruccion = f"DELETE FROM streamers WHERE name like 'auronplay'"
+    cursor.execute(instruccion)
+    conn.commit()
+    conn.close()
+
 if __name__ == "__main__":
     # create_db()
     # create_table()
@@ -56,3 +92,7 @@ if __name__ == "__main__":
     #     ("AuronPlay", 8000000, 20000)
     # ]
     # insert_rows(streamers)
+    # read_ordered("subs")
+    # search()
+    # update_fields()
+    # delete_row()
